@@ -4,7 +4,7 @@
 
 # 列表
 
-## 一、[chat_module](https://github.com/jingluoguo/flutter_common_templates/lib/chat_module)
+## 一、[chat_module](https://github.com/jingluoguo/flutter_common_templates/tree/main/lib/chat_module)
 > 基于StatefulWidget刷新状态的交互通用聊天界面
 
 ### 1 预览图
@@ -30,7 +30,7 @@ flutter_keyboard_visibility: ^5.0.3
 emoji_picker_flutter: ^1.0.5
 ```
 
-## 二、[customer_text_field](https://github.com/jingluoguo/flutter_common_templates/lib/customer_text_field)
+## 二、[customer_text_field](https://github.com/jingluoguo/flutter_common_templates/tree/main/lib/customer_text_field)
 > 自定义密码输入框
 
 ### 1 预览图
