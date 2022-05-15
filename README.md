@@ -43,3 +43,17 @@ emoji_picker_flutter: ^1.0.5
 flutter: 2.10.3
 dart: 2.16.2
 ```
+
+## 三、[click_position_dialog](https://github.com/jingluoguo/flutter_common_templates/tree/main/lib/click_position_dialog)
+> 根据点击位置生成dialog
+
+### 1 预览图
+
+![根据点击位置生成dialog](preview/根据点击位置生成dialog.png)
+
+### 2 版本
+
+```
+flutter: 2.10.3
+dart: 2.16.2
+```

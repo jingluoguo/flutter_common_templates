@@ -37,16 +37,16 @@ class CustomerTextField extends StatefulWidget {
 
   const CustomerTextField(
       {this.textChange,
-        this.itemCount = 6,
-        this.enableColor = Colors.red,
-        this.focusColor = Colors.red,
-        this.cursorColor = Colors.red,
-        this.textColor = Colors.red,
-        this.completeColor = const Color.fromARGB(255, 169, 172, 183),
-        this.regExp = "[0-9]",
-        this.inputNum = 1,
-        this.limited = true,
-        Key? key})
+      this.itemCount = 6,
+      this.enableColor = Colors.red,
+      this.focusColor = Colors.red,
+      this.cursorColor = Colors.red,
+      this.textColor = Colors.red,
+      this.completeColor = const Color.fromARGB(255, 169, 172, 183),
+      this.regExp = "[0-9]",
+      this.inputNum = 1,
+      this.limited = true,
+      Key? key})
       : super(key: key);
 
   @override
@@ -63,7 +63,7 @@ class _CustomerTextFieldState extends State<CustomerTextField> {
   @override
   void initState() {
     List.generate(widget.itemCount,
-            (index) => {focusNodeList.add(FocusNode()), inputList.add("")});
+        (index) => {focusNodeList.add(FocusNode()), inputList.add("")});
     super.initState();
   }
 
@@ -78,9 +78,10 @@ class _CustomerTextFieldState extends State<CustomerTextField> {
   }
 
   Widget _textField({required int index}) {
-    TextEditingController _controller = TextEditingController(text: inputList[index]);
-    _controller.selection = TextSelection.fromPosition(
-        TextPosition(affinity: TextAffinity.downstream, offset: inputList[index].length));
+    TextEditingController _controller =
+        TextEditingController(text: inputList[index]);
+    _controller.selection = TextSelection.fromPosition(TextPosition(
+        affinity: TextAffinity.downstream, offset: inputList[index].length));
     return SizedBox(
       width: MediaQuery.of(context).size.width / (widget.itemCount + 2),
       child: TextField(
@@ -98,10 +99,10 @@ class _CustomerTextFieldState extends State<CustomerTextField> {
         onTap: () {
           if (widget.limited) {
             int needInputIndex = inputList.indexOf('');
-            if(needInputIndex == -1){
+            if (needInputIndex == -1) {
               needInputIndex = widget.itemCount - 1;
             }
-            if(needInputIndex - 1 == index){
+            if (needInputIndex - 1 == index) {
               needInputIndex = index;
             }
             _getFocus(needInputIndex);
@@ -109,8 +110,8 @@ class _CustomerTextFieldState extends State<CustomerTextField> {
         },
         onChanged: (value) {
           var temValue = value;
-          if(value.length > 1){
-            temValue = value[value.length-1];
+          if (value.length > 1) {
+            temValue = value[value.length - 1];
           }
           setState(() {
             inputList[index] = temValue;
@@ -159,8 +160,8 @@ class _CustomerTextFieldState extends State<CustomerTextField> {
       crossAxisAlignment: CrossAxisAlignment.center,
       mainAxisAlignment: MainAxisAlignment.spaceAround,
       children:
-      List.generate(widget.itemCount, (index) => _textField(index: index))
-          .toList(),
+          List.generate(widget.itemCount, (index) => _textField(index: index))
+              .toList(),
     );
   }
 }

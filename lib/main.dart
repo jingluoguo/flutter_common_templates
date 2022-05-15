@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_common_templates/chat_module/chat_page.dart';
+import 'package:flutter_common_templates/click_position_dialog/test_click_position_dialog.dart';
 import 'package:flutter_common_templates/customer_text_field/test_customer_text_field.dart';
 
 void main() {
@@ -50,42 +51,47 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
+  final List<String> _titleList = ['1. 聊天界面', '2. 自定义密码输入框', '3. 根据点击位置生成弹窗'];
 
-  final List<String> _titleList = ['1. 聊天界面', '2. 自定义密码输入框'];
-
-  final List<Widget> _pageList = const [ChatPage(), TestCustomerTextField()];
+  final List<Widget> _pageList = [
+    const ChatPage(),
+    const TestCustomerTextField(),
+    TestClickPositionDialog()
+  ];
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text(widget.title),
-      ),
-      body: ListView.builder(
-        itemBuilder: (context, index){
-          return GestureDetector(
-            onTap: ()=> Navigator.push(context, MaterialPageRoute(builder: (context) => _pageList[index])),
-            child: Container(
-            width: double.infinity,
-            height: 100.0,
-            margin: const EdgeInsets.only(bottom: 10.0),
-            decoration: BoxDecoration(
-              border: Border.all(
-                color: Colors.black
+        appBar: AppBar(
+          title: Text(widget.title),
+        ),
+        body: ListView.builder(
+          itemBuilder: (context, index) {
+            return GestureDetector(
+              onTap: () => Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => _pageList[index])),
+              child: Container(
+                width: double.infinity,
+                height: 100.0,
+                margin: const EdgeInsets.only(bottom: 10.0),
+                decoration: BoxDecoration(
+                  border: Border.all(color: Colors.black),
+                  borderRadius: BorderRadius.circular(20.0),
+                  boxShadow: [
+                    BoxShadow(
+                        color: Colors.red.withOpacity(0.1), blurRadius: 10.0)
+                  ],
+                ),
+                child: Center(
+                  child: Text(
+                    _titleList[index],
+                    style: const TextStyle(fontSize: 24.0),
+                  ),
+                ),
               ),
-              borderRadius: BorderRadius.circular(20.0),
-              boxShadow: [BoxShadow(color: Colors.red.withOpacity(0.1), blurRadius: 10.0)],
-            ),
-            child: Center(
-              child: Text(_titleList[index], style: const TextStyle(
-                fontSize: 24.0
-              ),),
-            ),
-          ),
-          );
-        },
-        itemCount: _titleList.length,
-      )
-    );
+            );
+          },
+          itemCount: _titleList.length,
+        ));
   }
 }
