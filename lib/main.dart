@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_common_templates/chat_module/chat_page.dart';
+import 'package:flutter_common_templates/customer_text_field/test_customer_text_field.dart';
 
 void main() {
   runApp(const MyApp());
@@ -50,9 +51,9 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
 
-  final List<String> _titleList = ['1. 聊天界面'];
+  final List<String> _titleList = ['1. 聊天界面', '2. 自定义密码输入框'];
 
-  final List<Widget> _pageList = const [ChatPage()];
+  final List<Widget> _pageList = const [ChatPage(), TestCustomerTextField()];
 
   @override
   Widget build(BuildContext context) {
