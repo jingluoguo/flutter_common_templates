@@ -12,8 +12,11 @@
 ![flutter聊天页面](preview/flutter聊天页面.gif)
 
 ### 2 版本
+
+```
 flutter: 2.10.3
 dart: 2.16.2
+```
 
 ### 3 插件
 ```
@@ -35,5 +38,8 @@ emoji_picker_flutter: ^1.0.5
 ![自定义密码输入框](preview/自定义密码输入框.png)
 
 ### 2 版本
+
+```
 flutter: 2.10.3
 dart: 2.16.2
+```
