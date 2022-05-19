@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_common_templates/cascade_module/cascade_page.dart';
 import 'package:flutter_common_templates/chat_module/chat_page.dart';
 import 'package:flutter_common_templates/click_position_dialog/test_click_position_dialog.dart';
 import 'package:flutter_common_templates/customer_text_field/test_customer_text_field.dart';
@@ -53,13 +54,20 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  final List<String> _titleList = ['1. 聊天界面', '2. 自定义密码输入框', '3. 根据点击位置生成弹窗', '4. 长按生成六边形'];
+  final List<String> _titleList = [
+    '1. 聊天界面',
+    '2. 自定义密码输入框',
+    '3. 根据点击位置生成弹窗',
+    '4. 长按生成六边形',
+    '5. 级联'
+  ];
 
   final List<Widget> _pageList = [
     const ChatPage(),
     const TestCustomerTextField(),
     TestClickPositionDialog(),
     const TestScaleDrag(),
+    const CascadePage()
   ];
 
   @override

@@ -57,3 +57,17 @@ dart: 2.16.2
 flutter: 2.10.3
 dart: 2.16.2
 ```
+
+## 四、[cascade_module](https://github.com/jingluoguo/flutter_common_templates/tree/main/lib/cascade_module)
+> 级联
+
+### 1 预览图
+
+![级联](preview/级联.png)
+
+### 2 版本
+
+```
+flutter: 2.10.3
+dart: 2.16.2
+```
