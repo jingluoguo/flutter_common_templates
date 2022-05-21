@@ -16,6 +16,12 @@
 ```
 flutter: 2.10.3
 dart: 2.16.2
+# 视频播放插件
+video_player: ^2.1.1
+# 监听键盘
+flutter_keyboard_visibility: ^5.0.3
+# 表情库
+emoji_picker_flutter: ^1.0.5
 ```
 
 ### 3 插件
@@ -70,4 +76,20 @@ dart: 2.16.2
 ```
 flutter: 2.10.3
 dart: 2.16.2
+```
+
+## 五、[pomodoro](https://github.com/jingluoguo/flutter_common_templates/tree/main/lib/pomodoro)
+> 番茄钟
+
+### 1 预览图
+
+![级联](preview/番茄钟.gif)
+
+### 2 版本
+
+```
+flutter: 2.10.3
+dart: 2.16.2
+# 状态管理
+get: ^5.0.0-beta.51
 ```
