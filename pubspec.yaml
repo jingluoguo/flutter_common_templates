@@ -44,6 +44,9 @@ dependencies:
   # 表情库
   emoji_picker_flutter: ^1.0.5
 
+  # 状态管理
+  get: ^4.6.3
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
