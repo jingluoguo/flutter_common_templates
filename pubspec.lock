@@ -134,7 +134,7 @@ packages:
       name: get
       url: "https://pub.flutter-io.cn"
     source: hosted
-    version: "4.6.3"
+    version: "5.0.0-beta.51"
   html:
     dependency: transitive
     description:
@@ -379,5 +379,5 @@ packages:
     source: hosted
     version: "0.2.0+1"
 sdks:
-  dart: ">=2.16.2 <3.0.0"
+  dart: ">=2.16.0 <3.0.0"
   flutter: ">=2.5.0"
