@@ -34,11 +34,11 @@ class _PomodoroPageState extends State<PomodoroPage> {
 
   void onClickTimerButton(Duration dura) {
     String? timeStr = CommonUtil.formatTimeBySecond(dura.inSeconds);
-    var timeCircle =
-        TimeCircle(timeStr.obs, dura.inSeconds.toDouble().obs, dura.inSeconds.obs);
+    var timeCircle = TimeCircle(
+        timeStr.obs, dura.inSeconds.toDouble().obs, dura.inSeconds.obs);
     setState(() {
       allTimeCircle.add(timeCircle);
-      allTimeCircle.sort((a, b)=>a.nowTime.value.compareTo(b.nowTime.value));
+      allTimeCircle.sort((a, b) => a.nowTime.value.compareTo(b.nowTime.value));
     });
   }
 
@@ -93,10 +93,11 @@ class _PomodoroPageState extends State<PomodoroPage> {
                           style: ButtonStyle(
                             backgroundColor:
                                 MaterialStateProperty.all(Colors.white),
-                            minimumSize: MaterialStateProperty.all(
-                                Size(MediaQuery.of(context).size.width / 3, 50)),
+                            minimumSize: MaterialStateProperty.all(Size(
+                                MediaQuery.of(context).size.width / 3, 50)),
                           ),
-                          child: Text(CommonUtil.formatTimeBySecond(e.inSeconds)),
+                          child:
+                              Text(CommonUtil.formatTimeBySecond(e.inSeconds)),
                         ),
                       ))
                   .toList(),
