@@ -43,7 +43,6 @@ class GradientCircularProgressIndicatorNew extends StatefulWidget {
 class GradientCircularProgressIndicatorState
     extends State<GradientCircularProgressIndicatorNew>
     with TickerProviderStateMixin {
-
   @override
   void initState() {
     super.initState();
@@ -53,13 +52,15 @@ class GradientCircularProgressIndicatorState
   void dispose() {
     super.dispose();
   }
+
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
   }
 
   @override
-  void didUpdateWidget(covariant GradientCircularProgressIndicatorNew oldWidget) {
+  void didUpdateWidget(
+      covariant GradientCircularProgressIndicatorNew oldWidget) {
     super.didUpdateWidget(oldWidget);
   }
 
@@ -80,27 +81,29 @@ class GradientCircularProgressIndicatorState
                   left: 0,
                   right: 0,
                   top: 0,
-                  child: Obx(()=>CustomPaint(
-                    painter: ProgressPainter(
-                        froundColor: widget.frondColor ??
-                            ((widget.tag.nowTime.value <= 30)
-                                ? const Color.fromARGB(0xff, 252, 130, 10)
-                                : const Color.fromARGB(0xff, 64, 94, 172)),
-                        backgroundColor: widget.backgroundColor,
-                        progress:
-                        (widget.tag.nowTime.value / widget.tag.allTime.value) * 100,
-                        strokeWidth: widget.strokeWidth),
-                    size: Size.fromRadius(widget.radius / 2),
-                  ))),
+                  child: Obx(() => CustomPaint(
+                        painter: ProgressPainter(
+                            froundColor: widget.frondColor ??
+                                ((widget.tag.nowTime.value <= 30)
+                                    ? const Color.fromARGB(0xff, 252, 130, 10)
+                                    : const Color.fromARGB(0xff, 64, 94, 172)),
+                            backgroundColor: widget.backgroundColor,
+                            progress: (widget.tag.nowTime.value /
+                                    widget.tag.allTime.value) *
+                                100,
+                            strokeWidth: widget.strokeWidth),
+                        size: Size.fromRadius(widget.radius / 2),
+                      ))),
               Positioned(
                   left: 0,
                   right: 0,
                   top: widget.radius / 2 - 10,
-                  child: Obx(()=>Center(
-                      child: Visibility(
+                  child: Obx(() => Center(
+                          child: Visibility(
                         visible: widget.tag.visible.value,
                         child: Text(
-                          CommonUtil.formatTimeBySecond(widget.tag.nowTime.value.ceil()),
+                          CommonUtil.formatTimeBySecond(
+                              widget.tag.nowTime.value.ceil()),
                           textAlign: TextAlign.center,
                           style: const TextStyle(
                               fontSize: 16, fontWeight: FontWeight.bold),
@@ -116,8 +119,8 @@ class GradientCircularProgressIndicatorState
               ),
               Positioned(
                 child: Center(
-                    child: Text(
-                        CommonUtil.formatTimeBySecond(widget.tag.allTime.value))),
+                    child: Text(CommonUtil.formatTimeBySecond(
+                        widget.tag.allTime.value))),
                 left: 0,
                 right: 0,
                 bottom: 8,

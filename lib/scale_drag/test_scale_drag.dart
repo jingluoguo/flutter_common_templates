@@ -15,6 +15,7 @@ class TestScaleDrag extends StatefulWidget {
 
 class _TestScaleDragState extends State<TestScaleDrag> {
   final GlobalKey _globalKey = GlobalKey();
+
   //设置起始图片高宽度大小
   double imgWidth = 200.0;
   double imgHeight = 200.0;
@@ -38,30 +39,42 @@ class _TestScaleDragState extends State<TestScaleDrag> {
   /// 生成周边点
   generateCanPositionPoints(List<Offset> nowPoints) {
     for (var item in nowPoints) {
-      if(!canPoints.contains(Offset((-60.0 * 1.5 + item.dx) * scale, (half + item.dy) * scale))){
-        canPoints.add(Offset((-60.0 * 1.5 + item.dx) * scale, (half + item.dy) * scale));
+      if (!canPoints.contains(
+          Offset((-60.0 * 1.5 + item.dx) * scale, (half + item.dy) * scale))) {
+        canPoints.add(
+            Offset((-60.0 * 1.5 + item.dx) * scale, (half + item.dy) * scale));
       }
-      if(!canPoints.contains(Offset((-60.0 * 1.5 + item.dx) * scale, (-half + item.dy) * scale))){
-        canPoints.add(Offset((-60.0 * 1.5 + item.dx) * scale, (-half + item.dy) * scale));
+      if (!canPoints.contains(
+          Offset((-60.0 * 1.5 + item.dx) * scale, (-half + item.dy) * scale))) {
+        canPoints.add(
+            Offset((-60.0 * 1.5 + item.dx) * scale, (-half + item.dy) * scale));
       }
-      if(!canPoints.contains(Offset((0 + item.dx) * scale, (-2 * half + item.dy) * scale))){
-        canPoints.add(Offset((0 + item.dx) * scale, (-2 * half + item.dy) * scale));
+      if (!canPoints.contains(
+          Offset((0 + item.dx) * scale, (-2 * half + item.dy) * scale))) {
+        canPoints
+            .add(Offset((0 + item.dx) * scale, (-2 * half + item.dy) * scale));
       }
-      if(!canPoints.contains(Offset((60.0 * 1.5 + item.dx) * scale, (-half + item.dy) * scale))){
-        canPoints.add(Offset((60.0 * 1.5 + item.dx) * scale, (-half + item.dy) * scale));
+      if (!canPoints.contains(
+          Offset((60.0 * 1.5 + item.dx) * scale, (-half + item.dy) * scale))) {
+        canPoints.add(
+            Offset((60.0 * 1.5 + item.dx) * scale, (-half + item.dy) * scale));
       }
-      if(!canPoints.contains(Offset((60.0 * 1.5 + item.dx) * scale, (half + item.dy) * scale))){
-        canPoints.add(Offset((60.0 * 1.5 + item.dx) * scale, (half + item.dy) * scale));
+      if (!canPoints.contains(
+          Offset((60.0 * 1.5 + item.dx) * scale, (half + item.dy) * scale))) {
+        canPoints.add(
+            Offset((60.0 * 1.5 + item.dx) * scale, (half + item.dy) * scale));
       }
     }
     setState(() {});
   }
 
   /// 判断点在六边形的位置
-  void checkClickPosition(Offset offset){
-    for(var item in canPoints){
-      if((item.dx - offset.dx).abs() < (diameter / 2) || (offset.dx - item.dx).abs() < (diameter / 2)){
-        if((item.dy - offset.dy).abs() < (diameter / 2) || (offset.dy - item.dy).abs() < (diameter / 2)){
+  void checkClickPosition(Offset offset) {
+    for (var item in canPoints) {
+      if ((item.dx - offset.dx).abs() < (diameter / 2) ||
+          (offset.dx - item.dx).abs() < (diameter / 2)) {
+        if ((item.dy - offset.dy).abs() < (diameter / 2) ||
+            (offset.dy - item.dy).abs() < (diameter / 2)) {
           nowPoints.add(item);
           canPoints.remove(item);
           generateCanPositionPoints(nowPoints);
@@ -78,14 +91,14 @@ class _TestScaleDragState extends State<TestScaleDrag> {
       onScaleUpdate: (ScaleUpdateDetails e) {
         // print("开始缩放${e.scale}");
       },
-      onLongPressStart: (LongPressStartDetails details){
-        RenderBox renderBox = _globalKey.currentContext!
-            .findRenderObject() as RenderBox;
+      onLongPressStart: (LongPressStartDetails details) {
+        RenderBox renderBox =
+            _globalKey.currentContext!.findRenderObject() as RenderBox;
         Offset offset = renderBox.localToGlobal(Offset.zero);
-        Rect box =
-        renderBox.localToGlobal(Offset.zero) & renderBox.size;
+        Rect box = renderBox.localToGlobal(Offset.zero) & renderBox.size;
         Offset center = Offset(box.width / 2, (box.height / 2) + offset.dy);
-        checkClickPosition(Offset(details.localPosition.dx - center.dx, details.localPosition.dy - center.dy));
+        checkClickPosition(Offset(details.localPosition.dx - center.dx,
+            details.localPosition.dy - center.dy));
       },
       child: Scaffold(
         appBar: AppBar(
@@ -96,7 +109,8 @@ class _TestScaleDragState extends State<TestScaleDrag> {
           height: double.infinity,
           child: CustomPaint(
             key: _globalKey,
-            painter: PaperPainter(diameter: diameter, canPoints: canPoints, nowPoints: nowPoints),
+            painter: PaperPainter(
+                diameter: diameter, canPoints: canPoints, nowPoints: nowPoints),
           ),
         ),
       ),
@@ -108,14 +122,18 @@ class PaperPainter extends CustomPainter {
   final double diameter;
   final List<Offset> canPoints;
   final List<Offset> nowPoints;
-  PaperPainter({required this.diameter, required this.canPoints, required this.nowPoints});
+
+  PaperPainter(
+      {required this.diameter,
+      required this.canPoints,
+      required this.nowPoints});
 
   final Paint shapePaint = Paint()
     ..color = Colors.deepPurpleAccent
     ..style = PaintingStyle.stroke
     ..strokeWidth = 2;
 
-  void _getPositionAndDraw(Canvas canvas, List<Offset> offset){
+  void _getPositionAndDraw(Canvas canvas, List<Offset> offset) {
     for (var item in offset) {
       double radius = diameter / 2;
       List<Offset> points = [];
