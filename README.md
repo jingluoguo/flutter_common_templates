@@ -78,12 +78,12 @@ flutter: 2.10.3
 dart: 2.16.2
 ```
 
-## 五、[pomodoro](https://github.com/jingluoguo/flutter_common_templates/tree/main/lib/pomodoro)
+## 五、[pomodoro](https://github.com/jingluoguo/flutter_common_templates/tree/main/lib/pomodoro_module)
 > 番茄钟
 
 ### 1 预览图
 
-![级联](preview/番茄钟.gif)
+![番茄钟](preview/番茄钟.gif)
 
 ### 2 版本
 
