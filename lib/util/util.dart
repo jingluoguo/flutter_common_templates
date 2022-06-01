@@ -12,9 +12,9 @@ class CommonUtil {
     var minutes = duration.inMinutes % 60;
     var seconds = duration.inSeconds % 60;
     if (duration.inHours == 0) {
-      return "${minutes > 10 ? minutes : "0$minutes"}:${seconds > 10 ? seconds : "0$seconds"}";
+      return "${minutes >= 10 ? minutes : "0$minutes"}:${seconds >= 10 ? seconds : "0$seconds"}";
     } else {
-      return "${hours > 10 ? hours : "0$hours"}:${minutes > 10 ? minutes : "0$minutes"}:${seconds > 10 ? seconds : "0$seconds"}";
+      return "${hours >= 10 ? hours : "0$hours"}:${minutes >= 10 ? minutes : "0$minutes"}:${seconds >= 10 ? seconds : "0$seconds"}";
     }
   }
 }

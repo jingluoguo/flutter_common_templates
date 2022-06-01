@@ -55,6 +55,15 @@ class _PomodoroPageState extends State<PomodoroPage> {
             timeCircle.destroy();
           });
         },
+        onClickPause: (id) {
+          allTimeCircle.firstWhere((value) {
+            if (value.id == id) {
+              value.changeTimerStatus();
+              return true;
+            }
+            return false;
+          });
+        },
         radius: (MediaQuery.of(context).size.width - 80 - 6) / 2,
       ));
     }

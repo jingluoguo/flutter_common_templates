@@ -13,24 +13,29 @@ class TimeCircle {
   RxInt allTime;
   RxBool visible = true.obs;
   late Timer _timer;
+  RxBool start = true.obs;
 
-  /// 构造函数时开启倒计时
-  TimeCircle(this.tag, this.nowTime, this.allTime) {
-    id = DateTime.now().second;
+  /// 时间函数
+  startTime(){
     int durationTime = 1000;
-    if (allTime < 180) {
+    if(allTime.value < 180){
       durationTime = 10;
     }
     var oneSec = Duration(milliseconds: durationTime);
     _timer = Timer.periodic(oneSec, (timer) {
-      if ((nowTime - (durationTime / 1000)) < 0) {
+      if ((nowTime.value - (durationTime / 1000)) < 0) {
         nowTime.value = 0.0;
-        _timer.cancel();
-        complete();
+        destroy();
       } else {
         nowTime.value = nowTime.value - (durationTime / 1000);
       }
     });
+  }
+
+  /// 构造函数时开启倒计时
+  TimeCircle(this.tag, this.nowTime, this.allTime) {
+    id = DateTime.now().second;
+    startTime();
   }
 
   /// 倒计时完成后开始文本闪烁
@@ -43,5 +48,16 @@ class TimeCircle {
 
   destroy() async {
     _timer.cancel();
+  }
+
+  /// 暂停或开启时间
+  changeTimerStatus(){
+    if(_timer.isActive){
+      start.value = false;
+      _timer.cancel();
+    } else {
+      start.value = true;
+      startTime();
+    }
   }
 }

@@ -20,6 +20,7 @@ class GradientCircularProgressIndicatorNew extends StatefulWidget {
   final TimeCircle tag;
   final bool visible;
   final ValueChanged? onClickDelete;
+  final ValueChanged? onClickPause;
   final VoidCallback? whenCompleted;
 
   const GradientCircularProgressIndicatorNew(
@@ -32,6 +33,7 @@ class GradientCircularProgressIndicatorNew extends StatefulWidget {
       this.onClickDelete,
       this.visible = true,
       required this.tag,
+      this.onClickPause,
       this.whenCompleted})
       : super(key: key);
 
@@ -75,71 +77,79 @@ class GradientCircularProgressIndicatorState
               color: Colors.transparent,
               shape: BoxShape.rectangle,
               borderRadius: BorderRadius.circular(6.0)),
-          child: Stack(
-            children: [
-              Positioned(
+          child: GestureDetector(
+            onTap: ()=>widget.onClickPause?.call(widget.tag.id),
+            child: Stack(
+              children: [
+                Positioned(
+                    left: 0,
+                    right: 0,
+                    top: 0,
+                    child: Obx(() => CustomPaint(
+                          painter: ProgressPainter(
+                              froundColor: widget.frondColor ??
+                                  ((widget.tag.nowTime.value <= 30)
+                                      ? const Color.fromARGB(0xff, 252, 130, 10)
+                                      : const Color.fromARGB(0xff, 64, 94, 172)),
+                              backgroundColor: widget.backgroundColor,
+                              progress: (widget.tag.nowTime.value /
+                                      widget.tag.allTime.value) *
+                                  100,
+                              strokeWidth: widget.strokeWidth),
+                          size: Size.fromRadius(widget.radius / 2),
+                        ))),
+                Positioned(
+                    left: 0,
+                    right: 0,
+                    top: widget.radius / 2 - 10,
+                    child: Obx(() => Center(
+                            child: Visibility(
+                          visible: widget.tag.visible.value,
+                          child: Column(
+                            children: [
+                              Text(
+                                CommonUtil.formatTimeBySecond(
+                                    widget.tag.nowTime.value.ceil()),
+                                textAlign: TextAlign.center,
+                                style: const TextStyle(
+                                    fontSize: 16, fontWeight: FontWeight.bold),
+                              ),
+                              widget.tag.start.value ? const SizedBox() : const Icon(Icons.pause)
+                            ],
+                          ),
+                        )))),
+                Positioned(
+                  child: Center(
+                      child: Text(widget.desc1,
+                          style: const TextStyle(fontSize: 14))),
                   left: 0,
+                  right: 0,
+                  bottom: 26,
+                ),
+                Positioned(
+                  child: Center(
+                      child: Text(CommonUtil.formatTimeBySecond(
+                          widget.tag.allTime.value))),
+                  left: 0,
+                  right: 0,
+                  bottom: 8,
+                ),
+                Positioned(
+                  child: IconButton(
+                      alignment: Alignment.topRight,
+                      padding: const EdgeInsets.all(3.0),
+                      icon: const Icon(
+                        Icons.cancel,
+                        color: Colors.grey,
+                      ),
+                      onPressed: () {
+                        widget.onClickDelete?.call(widget.tag.id);
+                      }),
                   right: 0,
                   top: 0,
-                  child: Obx(() => CustomPaint(
-                        painter: ProgressPainter(
-                            froundColor: widget.frondColor ??
-                                ((widget.tag.nowTime.value <= 30)
-                                    ? const Color.fromARGB(0xff, 252, 130, 10)
-                                    : const Color.fromARGB(0xff, 64, 94, 172)),
-                            backgroundColor: widget.backgroundColor,
-                            progress: (widget.tag.nowTime.value /
-                                    widget.tag.allTime.value) *
-                                100,
-                            strokeWidth: widget.strokeWidth),
-                        size: Size.fromRadius(widget.radius / 2),
-                      ))),
-              Positioned(
-                  left: 0,
-                  right: 0,
-                  top: widget.radius / 2 - 10,
-                  child: Obx(() => Center(
-                          child: Visibility(
-                        visible: widget.tag.visible.value,
-                        child: Text(
-                          CommonUtil.formatTimeBySecond(
-                              widget.tag.nowTime.value.ceil()),
-                          textAlign: TextAlign.center,
-                          style: const TextStyle(
-                              fontSize: 16, fontWeight: FontWeight.bold),
-                        ),
-                      )))),
-              Positioned(
-                child: Center(
-                    child: Text(widget.desc1,
-                        style: const TextStyle(fontSize: 14))),
-                left: 0,
-                right: 0,
-                bottom: 26,
-              ),
-              Positioned(
-                child: Center(
-                    child: Text(CommonUtil.formatTimeBySecond(
-                        widget.tag.allTime.value))),
-                left: 0,
-                right: 0,
-                bottom: 8,
-              ),
-              Positioned(
-                child: IconButton(
-                    alignment: Alignment.topRight,
-                    padding: const EdgeInsets.all(3.0),
-                    icon: const Icon(
-                      Icons.cancel,
-                      color: Colors.grey,
-                    ),
-                    onPressed: () {
-                      widget.onClickDelete?.call(widget.tag.id);
-                    }),
-                right: 0,
-                top: 0,
-              ),
-            ],
+                ),
+              ],
+            ),
           ),
         );
       }
