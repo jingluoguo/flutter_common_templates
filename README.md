@@ -26,7 +26,7 @@ video_player: ^2.1.1
 # 监听键盘
 flutter_keyboard_visibility: ^5.0.3
 # 表情库
-emoji_picker_flutter: ^1.0.5
+emoji_picker_flutter: ^1.5.0
 ```
 
 ### 3 插件
