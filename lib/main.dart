@@ -3,6 +3,7 @@ import 'package:flutter_common_templates/cascade_module/cascade_page.dart';
 import 'package:flutter_common_templates/chat_module/chat_page.dart';
 import 'package:flutter_common_templates/click_position_dialog/test_click_position_dialog.dart';
 import 'package:flutter_common_templates/customer_text_field/test_customer_text_field.dart';
+import 'package:flutter_common_templates/local_auth_module/local_auth_page.dart';
 import 'package:flutter_common_templates/pomodoro_module/pomodoro_page.dart';
 
 import 'scale_drag/test_scale_drag.dart';
@@ -61,7 +62,8 @@ class _MyHomePageState extends State<MyHomePage> {
     '3. 根据点击位置生成弹窗',
     '4. 长按生成六边形',
     '5. 级联',
-    '6. 番茄钟'
+    '6. 番茄钟',
+    '7. local auth',
   ];
 
   final List<Widget> _pageList = [
@@ -71,6 +73,8 @@ class _MyHomePageState extends State<MyHomePage> {
     const TestScaleDrag(),
     const CascadePage(),
     const PomodoroPage(),
+    LocalAuthPage(),
+
   ];
 
   @override

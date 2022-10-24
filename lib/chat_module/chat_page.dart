@@ -10,9 +10,7 @@ import 'package:flutter_keyboard_visibility/flutter_keyboard_visibility.dart';
 ///本地
 import 'bubble.dart';
 
-/// 聊天气泡
-
-//气球聊天详情页x
+/// 气球聊天详情页
 class ChatPage extends StatefulWidget {
   const ChatPage({Key? key}) : super(key: key);
 
@@ -375,9 +373,9 @@ class _ChatPageState extends State<ChatPage> {
             height: 250.0,
             width: 1000.0,
             child: EmojiPicker(
-                onEmojiSelected: (Category category, Emoji emoji) {
-                  _onEmojiSelected(emoji);
-                },
+              onEmojiSelected: (Category? category, Emoji emoji){
+                _onEmojiSelected(emoji);
+              },
                 onBackspacePressed: _onBackspacePressed,
                 config: const Config(
                     columns: 7,
@@ -389,13 +387,15 @@ class _ChatPageState extends State<ChatPage> {
                     indicatorColor: Color(0xff65DAC5),
                     iconColor: Colors.orange,
                     iconColorSelected: Color(0xff65DAC5),
-                    progressIndicatorColor: Color(0xff65DAC5),
+                    // progressIndicatorColor: Color(0xff65DAC5),
                     backspaceColor: Color(0xff65DAC5),
                     showRecentsTab: true,
                     recentsLimit: 28,
-                    noRecentsText: 'No Recents',
-                    noRecentsStyle:
-                        TextStyle(fontSize: 20, color: Colors.black26),
+                    noRecents: Text(
+                      'No Recents',
+                      style: TextStyle(fontSize: 20, color: Colors.black26),
+                      textAlign: TextAlign.center,
+                    ), //
                     categoryIcons: CategoryIcons(),
                     buttonMode: ButtonMode.MATERIAL)),
           ),

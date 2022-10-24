@@ -2,6 +2,13 @@
 
 关于flutter的通用模板
 
+> 版本如下
+
+```yaml
+flutter: 3.0.2
+dart: 2.16.2
+```
+
 # 列表
 
 ## 一、[chat_module](https://github.com/jingluoguo/flutter_common_templates/tree/main/lib/chat_module)
@@ -13,9 +20,7 @@
 
 ### 2 版本
 
-```
-flutter: 2.10.3
-dart: 2.16.2
+```yaml
 # 视频播放插件
 video_player: ^2.1.1
 # 监听键盘
@@ -25,7 +30,8 @@ emoji_picker_flutter: ^1.0.5
 ```
 
 ### 3 插件
-```
+
+```yaml
 # 视频播放插件: 背景播放
 video_player: ^2.1.1
 
@@ -45,9 +51,7 @@ emoji_picker_flutter: ^1.0.5
 
 ### 2 版本
 
-```
-flutter: 2.10.3
-dart: 2.16.2
+```yaml
 ```
 
 ## 三、[click_position_dialog](https://github.com/jingluoguo/flutter_common_templates/tree/main/lib/click_position_dialog)
@@ -59,9 +63,7 @@ dart: 2.16.2
 
 ### 2 版本
 
-```
-flutter: 2.10.3
-dart: 2.16.2
+```yaml
 ```
 
 ## 四、[cascade_module](https://github.com/jingluoguo/flutter_common_templates/tree/main/lib/cascade_module)
@@ -73,9 +75,7 @@ dart: 2.16.2
 
 ### 2 版本
 
-```
-flutter: 2.10.3
-dart: 2.16.2
+```yaml
 ```
 
 ## 五、[pomodoro](https://github.com/jingluoguo/flutter_common_templates/tree/main/lib/pomodoro_module)
@@ -87,9 +87,7 @@ dart: 2.16.2
 
 ### 2 版本
 
-```
-flutter: 2.10.3
-dart: 2.16.2
+```yaml
 # 状态管理
-get: ^5.0.0-beta.51
+get: ^5.0.0-beta.52
 ```
