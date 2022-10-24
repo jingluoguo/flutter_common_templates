@@ -13,11 +13,6 @@ class _LocalAuthPageState extends State<LocalAuthPage> {
   var localAuth = LocalAuthentication();
 
   @override
-  void initState() {
-    super.initState();
-  }
-
-  @override
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
