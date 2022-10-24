@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 import 'package:local_auth/local_auth.dart';
 
 class LocalAuthPage extends StatefulWidget {
