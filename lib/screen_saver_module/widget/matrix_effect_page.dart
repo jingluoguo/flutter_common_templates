@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 
 class MatrixEffect extends StatefulWidget {
   /// 数据集
-  final List<String> characters;
+  final List<String>? characters;
 
   /// 单次生成词组数量
   final int initCount;
@@ -16,11 +16,15 @@ class MatrixEffect extends StatefulWidget {
   /// 点击事件
   final Function()? onTap;
 
+  /// 字体大小
+  final double fontSize;
+
   const MatrixEffect({
-    required this.characters,
+    this.characters,
     this.onTap,
     this.initCount = 2,
-    this.generateSpeed = 500,
+    this.generateSpeed = 1000,
+    this.fontSize = 28.0,
     Key? key,
   }) : super(key: key);
 
@@ -32,12 +36,37 @@ class _MatrixEffectState extends State<MatrixEffect> {
   List<Widget> verticalLines = [];
   Timer? _timer;
 
+  List<double> filter = [1.0, 0.8, 0.6];
+
+  /// 单列所能容纳的字数
+  int fontCount = 0;
+
+  final Random _random = Random();
+
   @override
   void initState() {
     super.initState();
-    WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
+    WidgetsBinding.instance!.addPostFrameCallback((timeStamp) {
+      initData();
       _startTime();
     });
+  }
+
+  void initData() {
+    fontCount = MediaQuery.of(context).size.height ~/ widget.fontSize + 1;
+  }
+
+  List<String> generateCharacters() {
+    List<String> showCharacters = [];
+    for (int i = 0; i < fontCount; i++) {
+      if (widget.characters == null || widget.characters!.isEmpty) {
+        showCharacters.add(String.fromCharCode(_random.nextInt(512)));
+      } else {
+        showCharacters.add(
+            widget.characters![_random.nextInt(widget.characters!.length)]);
+      }
+    }
+    return showCharacters;
   }
 
   @override
@@ -47,6 +76,7 @@ class _MatrixEffectState extends State<MatrixEffect> {
   }
 
   void _startTime() {
+    if (fontCount == 0) return;
     _timer =
         Timer.periodic(Duration(milliseconds: widget.generateSpeed), (timer) {
           setState(() {
@@ -59,22 +89,24 @@ class _MatrixEffectState extends State<MatrixEffect> {
 
   Widget _getVerticalTextLine(BuildContext context) {
     Key key = GlobalKey();
+    double temp = filter[_random.nextInt(3)];
+    double fontSize = widget.fontSize * temp;
+    double opacity = temp;
     return Positioned(
-      key: key,
-      left: Random().nextDouble() * MediaQuery.of(context).size.width,
-      child: VerticalTextLine(
-        characters: widget.characters,
-        speed: Random().nextInt(10) + Random().nextDouble(),
-        maxLength: Random().nextInt(10) + 5,
-        onFinished: () {
-          setState(() {
-            verticalLines.removeWhere((element) {
-              return element.key == key;
+        key: key,
+        left: Random().nextDouble() * MediaQuery.of(context).size.width,
+        child: VerticalProgressiveTextLine(
+          characters: generateCharacters(),
+          fontSize: fontSize,
+          opacity: opacity,
+          onFinish: () {
+            setState(() {
+              verticalLines.removeWhere((element) {
+                return element.key == key;
+              });
             });
-          });
-        },
-      ),
-    );
+          },
+        ));
   }
 
   @override
@@ -88,6 +120,107 @@ class _MatrixEffectState extends State<MatrixEffect> {
         ),
       ),
     );
+  }
+}
+
+class VerticalProgressiveTextLine extends StatefulWidget {
+  final List<String> characters;
+  final Function() onFinish;
+  final double fontSize;
+  final double opacity;
+  const VerticalProgressiveTextLine(
+      {required this.characters,
+        required this.onFinish,
+        required this.fontSize,
+        this.opacity = 0.0,
+        Key? key})
+      : super(key: key);
+
+  @override
+  _VerticalProgressiveTextLineState createState() =>
+      _VerticalProgressiveTextLineState();
+}
+
+class _VerticalProgressiveTextLineState
+    extends State<VerticalProgressiveTextLine> {
+  Timer? _timer;
+
+  double speed = 1.0;
+
+  bool accelerate = false;
+
+  List<Color> colors = [];
+
+  List<double> stops = [];
+
+  @override
+  void initState() {
+    initData();
+    startTimer();
+    super.initState();
+  }
+
+  void initData() {
+    colors = [
+      Colors.transparent,
+      Colors.green.withOpacity(widget.opacity),
+      Colors.green.withOpacity(widget.opacity),
+      Colors.white.withOpacity(widget.opacity),
+      Colors.white.withOpacity(widget.opacity),
+      Colors.transparent,
+    ];
+    stops = [0.0, 0.0, 0.0, 0.0, 0.0, 0.0];
+  }
+
+  void startTimer() {
+    _timer = Timer.periodic(const Duration(milliseconds: 10), (timer) {
+      speed = speed * 1.001;
+      setState(() {
+        stops[0] += 0.0015 * speed;
+        stops[1] += 0.0035 * speed;
+        stops[5] += 0.01 * speed;
+        stops[4] = stops[5];
+        stops[3] = stops[5] - 1/23;
+        stops[2] = stops[3] - 1/23;
+      });
+      if (stops[3] >= 1.0 && !accelerate) {
+        accelerate = true;
+        speed = speed * 2.0;
+      }
+      if (stops[0] >= 1.0) {
+        widget.onFinish.call();
+      }
+    });
+  }
+
+  @override
+  void dispose() {
+    _timer?.cancel();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return ShaderMask(
+        shaderCallback: (Rect bounds) {
+          return LinearGradient(
+            begin: Alignment.topCenter,
+            end: Alignment.bottomCenter,
+            stops: stops,
+            colors: colors,
+          ).createShader(bounds);
+        },
+        blendMode: BlendMode.srcIn,
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: [
+            for (String chara in widget.characters)
+              Text(chara,
+                  style:
+                  TextStyle(color: Colors.white, fontSize: widget.fontSize))
+          ],
+        ));
   }
 }
 

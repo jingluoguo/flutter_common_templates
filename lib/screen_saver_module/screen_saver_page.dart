@@ -23,7 +23,7 @@ class _ScreenSaverPageState extends State<ScreenSaverPage> {
           child: SizedBox(
             width: double.infinity,
             height: 200,
-            child: MatrixEffect(characters: ['A', 'B', 'C', 'D', 'F']),
+            child: MatrixEffect(),
           ),)
         ],
       ),
