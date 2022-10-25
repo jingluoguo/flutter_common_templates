@@ -63,16 +63,16 @@ class _MatrixEffectState extends State<MatrixEffect> {
   }
 
   List<String> generateCharacters() {
-    List<String> showCharacters = [];
+    List<String> characters = [];
     for (int i = 0; i < fontCount; i++) {
       if (widget.characters == null || widget.characters!.isEmpty) {
-        showCharacters.add(String.fromCharCode(_random.nextInt(512)));
+        characters.add(String.fromCharCode(_random.nextInt(512)));
       } else {
-        showCharacters.add(
+        characters.add(
             widget.characters![_random.nextInt(widget.characters!.length)]);
       }
     }
-    return showCharacters;
+    return characters;
   }
 
   @override
@@ -98,11 +98,12 @@ class _MatrixEffectState extends State<MatrixEffect> {
     double temp = filter[_random.nextInt(filter.length)];
     double fontSize = widget.fontSize * temp;
     double opacity = temp;
+    var showCharacters = generateCharacters();
     return Positioned(
         key: key,
         left: Random().nextDouble() * MediaQuery.of(context).size.width,
         child: VerticalProgressiveTextLine(
-          characters: generateCharacters(),
+          characters: showCharacters,
           fontSize: fontSize,
           opacity: opacity,
           scaleMode: temp > 0.6
@@ -111,6 +112,7 @@ class _MatrixEffectState extends State<MatrixEffect> {
               ? Scale.normal
               : Scale.zoomOut,
           onFinish: () {
+            showCharacters.clear();
             setState(() {
               verticalLines.removeWhere((element) {
                 return element.key == key;
@@ -172,6 +174,8 @@ class _VerticalProgressiveTextLineState
 
   List<double> stops = [];
 
+  bool releaseStatus = false;
+
   @override
   void initState() {
     initData();
@@ -193,6 +197,7 @@ class _VerticalProgressiveTextLineState
 
   void startTimer() {
     _timer = Timer.periodic(const Duration(milliseconds: 10), (timer) {
+      if(releaseStatus) return;
       speed = speed * 1.001;
       setState(() {
         stops[0] += 0.0015 * speed;
@@ -207,19 +212,31 @@ class _VerticalProgressiveTextLineState
           scale -= widget.scaleSpeed;
         }
       });
+      if (stops[1] >= 1.0) {
+        releaseStatus = true;
+        release();
+        return;
+      }
       if (stops[5] >= 1.0 && !accelerate) {
         accelerate = true;
         speed = speed * 2.0;
       }
-      if (stops[0] >= 1.0) {
-        widget.onFinish.call();
-      }
     });
+  }
+
+  void release(){
+    widget.characters.clear();
+    _timer?.cancel();
+    _timer = null;
+    colors.clear();
+    stops.clear();
+    widget.onFinish.call();
   }
 
   @override
   void dispose() {
     _timer?.cancel();
+    _timer = null;
     super.dispose();
   }
 
