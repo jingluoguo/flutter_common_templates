@@ -1,6 +1,5 @@
 import 'dart:math';
 import 'dart:async';
-import 'dart:ui';
 
 import 'package:flutter/material.dart';
 
@@ -166,10 +165,6 @@ class _VerticalProgressiveTextLineState
   // 是否加速
   bool accelerate = false;
 
-  // 模糊区间
-  double blurTop = 0.0;
-  double blurBottom = 0.0;
-
   // 缩放比例
   double scale = 1.0;
 
@@ -206,8 +201,6 @@ class _VerticalProgressiveTextLineState
         stops[4] = stops[5];
         stops[3] = stops[5] - 1 / 23;
         stops[2] = stops[3] - 1 / 23;
-        blurTop = stops[0] * MediaQuery.of(context).size.height;
-        blurBottom = stops[2] * MediaQuery.of(context).size.height;
         if (widget.scaleMode == Scale.zoomIn) {
           scale += widget.scaleSpeed;
         } else if (widget.scaleMode == Scale.zoomOut) {
