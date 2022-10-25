@@ -14,7 +14,7 @@ class _ScreenSaverPageState extends State<ScreenSaverPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('指纹识别demo'),
+        title: const Text('屏保列表'),
       ),
       body: Column(
         children: const [
