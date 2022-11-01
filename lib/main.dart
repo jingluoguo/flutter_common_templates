@@ -6,8 +6,10 @@ import 'package:flutter_common_templates/customer_text_field/test_customer_text_
 import 'package:flutter_common_templates/local_auth_module/local_auth_page.dart';
 import 'package:flutter_common_templates/pomodoro_module/pomodoro_page.dart';
 import 'package:flutter_common_templates/screen_saver_module/screen_saver_page.dart';
+import 'package:flutter_common_templates/share_module/share_page.dart';
 import 'package:flutter_common_templates/socket_module/socket_page.dart';
 
+import 'dial_module/dial_page.dart';
 import 'scale_drag/test_scale_drag.dart';
 
 void main() {
@@ -48,7 +50,8 @@ class _MyHomePageState extends State<MyHomePage> {
     '6. 番茄钟',
     '7. local auth',
     '8. 屏保样式',
-    '9. socket通信'
+    '9. socket通信',
+    '10. 闹钟表盘'
   ];
 
   final List<Widget> _pageList = [
@@ -61,6 +64,7 @@ class _MyHomePageState extends State<MyHomePage> {
     LocalAuthPage(),
     const ScreenSaverPage(),
     const SocketPage(),
+    const DialPage(),
   ];
 
   @override

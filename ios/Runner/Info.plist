@@ -43,5 +43,7 @@
 	<false/>
 	<key>NSFaceIDUsageDescription</key>
     <string>为了更好的服务用户</string>
+	<key>CADisableMinimumFrameDurationOnPhone</key>
+	<true/>
 </dict>
 </plist>
