@@ -50,6 +50,8 @@ dependencies:
   # local auth
   local_auth: 2.1.2
 
+  share_plus: 6.2.0
+
 dev_dependencies:
   flutter_test:
     sdk: flutter

@@ -51,7 +51,8 @@ class _MyHomePageState extends State<MyHomePage> {
     '7. local auth',
     '8. 屏保样式',
     '9. socket通信',
-    '10. 闹钟表盘'
+    '10. 闹钟表盘',
+    '11. 分享'
   ];
 
   final List<Widget> _pageList = [
@@ -65,6 +66,7 @@ class _MyHomePageState extends State<MyHomePage> {
     const ScreenSaverPage(),
     const SocketPage(),
     const DialPage(),
+    const SharePage()
   ];
 
   @override

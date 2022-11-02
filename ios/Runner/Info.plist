@@ -8,6 +8,19 @@
 	<string>$(EXECUTABLE_NAME)</string>
 	<key>CFBundleIdentifier</key>
 	<string>$(PRODUCT_BUNDLE_IDENTIFIER)</string>
+<!--    <key>CFBundleDocumentTypes</key>-->
+<!--    <array>-->
+<!--        <dict>-->
+<!--            <key>CFBundleTypeName</key>-->
+<!--            <string>CommonTemplates</string>-->
+<!--            <key>LSHandlerRank</key>-->
+<!--            <string>Owner</string>-->
+<!--            <key>LSItemContentTypes</key>-->
+<!--            <array>-->
+<!--                <string>com.example.flutterCommonTemplates.CommonTemplates</string>-->
+<!--            </array>-->
+<!--        </dict>-->
+<!--    </array>-->
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
 	<key>CFBundleName</key>
@@ -20,6 +33,13 @@
 	<string>????</string>
 	<key>CFBundleVersion</key>
 	<string>$(FLUTTER_BUILD_NUMBER)</string>
+<!--    <key>LSApplicationQueriesSchemes</key>-->
+<!--    <array>-->
+<!--        <string>https</string>-->
+<!--        <string>http</string>-->
+<!--        <string>weixin</string>-->
+<!--        <string>weixinULAPI</string>-->
+<!--    </array>-->
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>UILaunchStoryboardName</key>
@@ -45,5 +65,27 @@
     <string>为了更好的服务用户</string>
 	<key>CADisableMinimumFrameDurationOnPhone</key>
 	<true/>
+    <key>UTExportedTypeDeclarations</key>
+    <array>
+        <dict>
+            <key>UTTypeConformsTo</key>
+            <array>
+                <string>public.data</string>
+            </array>
+            <key>UTTypeIconFiles</key>
+            <array/>
+<!--            <key>UTTypeIdentifier</key>-->
+<!--            <string>com.example.flutterCommonTemplates.CommonTemplates</string>-->
+<!--            <key>UTTypeTagSpecification</key>-->
+<!--            <dict>-->
+<!--                <key>public.filename-extension</key>-->
+<!--                <array>-->
+<!--                    <string>lscfg</string>-->
+<!--                    <string>lsdb</string>-->
+<!--                    <string>cltpl</string>-->
+<!--                </array>-->
+<!--            </dict>-->
+        </dict>
+    </array>
 </dict>
 </plist>
