@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_common_templates/audio_module/audio_page.dart';
 import 'package:flutter_common_templates/cascade_module/cascade_page.dart';
 import 'package:flutter_common_templates/chat_module/chat_page.dart';
 import 'package:flutter_common_templates/click_position_dialog/test_click_position_dialog.dart';
@@ -52,7 +53,8 @@ class _MyHomePageState extends State<MyHomePage> {
     '8. 屏保样式',
     '9. socket通信',
     '10. 闹钟表盘',
-    '11. 分享'
+    '11. 分享',
+    '12. 外设状态',
   ];
 
   final List<Widget> _pageList = [
@@ -66,7 +68,8 @@ class _MyHomePageState extends State<MyHomePage> {
     const ScreenSaverPage(),
     const SocketPage(),
     const DialPage(),
-    const SharePage()
+    const SharePage(),
+    const AudioPage(),
   ];
 
   @override

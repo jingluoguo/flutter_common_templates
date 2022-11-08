@@ -52,6 +52,8 @@ dependencies:
 
   share_plus: 6.2.0
 
+  just_audio: ^0.9.30
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
@@ -81,6 +83,7 @@ flutter:
   assets:
     - assets/chat/
     - assets/healing/
+    - assets/audio/
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.
