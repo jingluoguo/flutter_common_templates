@@ -25,7 +25,11 @@ class MatrixEffect extends StatefulWidget {
   /// 字体大小
   final double fontSize;
 
+  /// 高度
+  final double height;
+
   const MatrixEffect({
+    required this.height,
     this.characters,
     this.onTap,
     this.initCount = 2,
@@ -59,14 +63,14 @@ class _MatrixEffectState extends State<MatrixEffect> {
   }
 
   void initData() {
-    fontCount = MediaQuery.of(context).size.height ~/ widget.fontSize + 1;
+    fontCount = widget.height ~/ widget.fontSize + 1;
   }
 
   List<String> generateCharacters() {
     List<String> characters = [];
     for (int i = 0; i < fontCount; i++) {
       if (widget.characters == null || widget.characters!.isEmpty) {
-        characters.add(String.fromCharCode(_random.nextInt(512)));
+        characters.add(String.fromCharCode(_random.nextInt(256)));
       } else {
         characters.add(
             widget.characters![_random.nextInt(widget.characters!.length)]);
@@ -85,16 +89,16 @@ class _MatrixEffectState extends State<MatrixEffect> {
     if (fontCount == 0) return;
     _timer =
         Timer.periodic(Duration(milliseconds: widget.generateSpeed), (timer) {
-          setState(() {
-            for (int i = 0; i < widget.initCount; i++) {
-              verticalLines.add(_getVerticalTextLine(context));
-            }
-          });
-        });
+      if (verticalLines.length > (widget.initCount * 3)) return;
+      for (int i = 0; i < widget.initCount; i++) {
+        verticalLines.add(_getVerticalTextLine(context));
+      }
+      setState(() {});
+    });
   }
 
   Widget _getVerticalTextLine(BuildContext context) {
-    Key key = GlobalKey();
+    var key = UniqueKey();
     double temp = filter[_random.nextInt(filter.length)];
     double fontSize = widget.fontSize * temp;
     double opacity = temp;
@@ -109,15 +113,14 @@ class _MatrixEffectState extends State<MatrixEffect> {
           scaleMode: temp > 0.6
               ? Scale.zoomIn
               : temp > 0.4
-              ? Scale.normal
-              : Scale.zoomOut,
+                  ? Scale.normal
+                  : Scale.zoomOut,
           onFinish: () {
-            showCharacters.clear();
-            setState(() {
-              verticalLines.removeWhere((element) {
-                return element.key == key;
-              });
+            verticalLines.removeWhere((element) {
+              return element.key == key;
             });
+            setState(() {});
+            showCharacters.clear();
           },
         ));
   }
@@ -145,12 +148,12 @@ class VerticalProgressiveTextLine extends StatefulWidget {
   final double scaleSpeed;
   const VerticalProgressiveTextLine(
       {required this.characters,
-        required this.onFinish,
-        required this.fontSize,
-        required this.scaleMode,
-        this.opacity = 0.0,
-        this.scaleSpeed = 0.0002,
-        Key? key})
+      required this.onFinish,
+      required this.fontSize,
+      required this.scaleMode,
+      this.opacity = 0.0,
+      this.scaleSpeed = 0.0002,
+      Key? key})
       : super(key: key);
 
   @override
@@ -197,7 +200,7 @@ class _VerticalProgressiveTextLineState
 
   void startTimer() {
     _timer = Timer.periodic(const Duration(milliseconds: 10), (timer) {
-      if(releaseStatus) return;
+      if (releaseStatus) return;
       speed = speed * 1.001;
       setState(() {
         stops[0] += 0.0015 * speed;
@@ -214,6 +217,7 @@ class _VerticalProgressiveTextLineState
       });
       if (stops[1] >= 1.0) {
         releaseStatus = true;
+        timer.cancel();
         release();
         return;
       }
@@ -224,7 +228,7 @@ class _VerticalProgressiveTextLineState
     });
   }
 
-  void release(){
+  void release() {
     widget.characters.clear();
     _timer?.cancel();
     _timer = null;
