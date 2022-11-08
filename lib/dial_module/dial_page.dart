@@ -248,7 +248,8 @@ class DialPainter extends CustomPainter {
     // 绘制中心点
     drawCenterPoint(canvas);
 
-    var date = DateTime.now();
+    var date = DateTime.now().toLocal();
+    print('当前时间:$date   ${DateTime.now()}');
 
     // 绘制时针
     drawHourPin(canvas, date);
