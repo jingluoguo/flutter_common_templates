@@ -31,17 +31,19 @@ class _SharePageState extends State<SharePage> {
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            GestureDetector(
-              onTap: ()=>share(context),
-              child: Container(
-                height: 48.0,
-                width: 100.0,
-                color: Colors.cyanAccent,
-                child: const Center(
-                  child: Text("分享"),
+            Builder(builder: (BuildContext context) {
+              return GestureDetector(
+                onTap: ()=>share(context),
+                child: Container(
+                  height: 48.0,
+                  width: 100.0,
+                  color: Colors.cyanAccent,
+                  child: const Center(
+                    child: Text("分享"),
+                  ),
                 ),
-              ),
-            ),
+              );
+            }),
           ],
         ),
       ),
