@@ -89,12 +89,12 @@ class _MatrixEffectState extends State<MatrixEffect> {
     if (fontCount == 0) return;
     _timer =
         Timer.periodic(Duration(milliseconds: widget.generateSpeed), (timer) {
-      if (verticalLines.length > (widget.initCount * 3)) return;
-      for (int i = 0; i < widget.initCount; i++) {
-        verticalLines.add(_getVerticalTextLine(context));
-      }
-      setState(() {});
-    });
+          if (verticalLines.length > (widget.initCount * 3)) return;
+          for (int i = 0; i < widget.initCount; i++) {
+            verticalLines.add(_getVerticalTextLine(context));
+          }
+          setState(() {});
+        });
   }
 
   Widget _getVerticalTextLine(BuildContext context) {
@@ -113,8 +113,8 @@ class _MatrixEffectState extends State<MatrixEffect> {
           scaleMode: temp > 0.6
               ? Scale.zoomIn
               : temp > 0.4
-                  ? Scale.normal
-                  : Scale.zoomOut,
+              ? Scale.normal
+              : Scale.zoomOut,
           onFinish: () {
             verticalLines.removeWhere((element) {
               return element.key == key;
@@ -130,7 +130,7 @@ class _MatrixEffectState extends State<MatrixEffect> {
     return GestureDetector(
       onTap: widget.onTap,
       child: Scaffold(
-        backgroundColor: Colors.black,
+        backgroundColor: Colors.transparent,
         body: Stack(
           children: verticalLines,
         ),
@@ -148,12 +148,12 @@ class VerticalProgressiveTextLine extends StatefulWidget {
   final double scaleSpeed;
   const VerticalProgressiveTextLine(
       {required this.characters,
-      required this.onFinish,
-      required this.fontSize,
-      required this.scaleMode,
-      this.opacity = 0.0,
-      this.scaleSpeed = 0.0002,
-      Key? key})
+        required this.onFinish,
+        required this.fontSize,
+        required this.scaleMode,
+        this.opacity = 0.0,
+        this.scaleSpeed = 0.0002,
+        Key? key})
       : super(key: key);
 
   @override
@@ -203,9 +203,9 @@ class _VerticalProgressiveTextLineState
       if (releaseStatus) return;
       speed = speed * 1.001;
       setState(() {
-        stops[0] += 0.0015 * speed;
-        stops[1] += 0.0035 * speed;
-        stops[5] += 0.01 * speed;
+        stops[0] += 0.003 * speed;
+        stops[1] += 0.007 * speed;
+        stops[5] += 0.02 * speed;
         stops[4] = stops[5];
         stops[3] = stops[5] - 1 / 23;
         stops[2] = stops[3] - 1 / 23;

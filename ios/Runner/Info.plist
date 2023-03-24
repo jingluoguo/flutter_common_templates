@@ -15,10 +15,6 @@
             <string>CommonTemplates</string>
             <key>LSHandlerRank</key>
             <string>Owner</string>
-            <key>LSItemContentTypes</key>
-            <array>
-                <string>com.example.flutterCommonTemplates.CommonTemplates</string>
-            </array>
         </dict>
     </array>
 	<key>CFBundleInfoDictionaryVersion</key>
@@ -33,6 +29,8 @@
 	<string>????</string>
 	<key>CFBundleVersion</key>
 	<string>$(FLUTTER_BUILD_NUMBER)</string>
+    <key>NSCameraUsageDescription</key>
+    <string>This app requires access to the camera for sharing images.</string>
     <key>LSApplicationQueriesSchemes</key>
     <array>
         <string>https</string>
@@ -67,27 +65,5 @@
     <string>用于进行监听外设状态及语音</string>
 	<key>CADisableMinimumFrameDurationOnPhone</key>
 	<true/>
-    <key>UTExportedTypeDeclarations</key>
-    <array>
-        <dict>
-            <key>UTTypeConformsTo</key>
-            <array>
-                <string>public.data</string>
-            </array>
-            <key>UTTypeIconFiles</key>
-            <array/>
-            <key>UTTypeIdentifier</key>
-            <string>com.example.flutterCommonTemplates.CommonTemplates</string>
-            <key>UTTypeTagSpecification</key>
-            <dict>
-                <key>public.filename-extension</key>
-                <array>
-                    <string>lscfg</string>
-                    <string>lsdb</string>
-                    <string>cltpl</string>
-                </array>
-            </dict>
-        </dict>
-    </array>
 </dict>
 </plist>
