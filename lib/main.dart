@@ -4,6 +4,7 @@ import 'package:flutter_common_templates/cascade_module/cascade_page.dart';
 import 'package:flutter_common_templates/chat_module/chat_page.dart';
 import 'package:flutter_common_templates/click_position_dialog/test_click_position_dialog.dart';
 import 'package:flutter_common_templates/customer_text_field/test_customer_text_field.dart';
+import 'package:flutter_common_templates/isolate_module/isolate_page.dart';
 import 'package:flutter_common_templates/local_auth_module/local_auth_page.dart';
 import 'package:flutter_common_templates/pomodoro_module/pomodoro_page.dart';
 import 'package:flutter_common_templates/screen_saver_module/screen_saver_page.dart';
@@ -55,6 +56,7 @@ class _MyHomePageState extends State<MyHomePage> {
     '10. 闹钟表盘',
     '11. 分享',
     '12. 外设状态',
+    '13. isolate双向通信'
   ];
 
   final List<Widget> _pageList = [
@@ -70,13 +72,19 @@ class _MyHomePageState extends State<MyHomePage> {
     const DialPage(),
     const SharePage(),
     const AudioPage(),
+    const IsolatePage(),
   ];
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: Text(widget.title),
+          title: Text(
+            widget.title+'設定',
+            style: TextStyle(
+              fontFamily: 'SFPro1'
+            ),
+          ),
         ),
         body: ListView.builder(
           itemBuilder: (context, index) {
@@ -98,7 +106,10 @@ class _MyHomePageState extends State<MyHomePage> {
                 child: Center(
                   child: Text(
                     _titleList[index],
-                    style: const TextStyle(fontSize: 24.0),
+                    style: TextStyle(
+                      fontSize: 24.0,
+                      fontFamily: (index == 1 ? 'SFPro1' : index == 3 ? 'SFPro2' : 'SFPro')
+                    ),
                   ),
                 ),
               ),
