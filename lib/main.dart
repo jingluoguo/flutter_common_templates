@@ -3,6 +3,7 @@ import 'package:flutter_common_templates/audio_module/audio_page.dart';
 import 'package:flutter_common_templates/cascade_module/cascade_page.dart';
 import 'package:flutter_common_templates/chat_module/chat_page.dart';
 import 'package:flutter_common_templates/click_position_dialog/test_click_position_dialog.dart';
+import 'package:flutter_common_templates/constrained_module/constrained_page.dart';
 import 'package:flutter_common_templates/customer_text_field/test_customer_text_field.dart';
 import 'package:flutter_common_templates/isolate_module/isolate_page.dart';
 import 'package:flutter_common_templates/local_auth_module/local_auth_page.dart';
@@ -56,7 +57,8 @@ class _MyHomePageState extends State<MyHomePage> {
     '10. 闹钟表盘',
     '11. 分享',
     '12. 外设状态',
-    '13. isolate双向通信'
+    '13. isolate双向通信',
+    '14. 测试约束性'
   ];
 
   final List<Widget> _pageList = [
@@ -66,13 +68,14 @@ class _MyHomePageState extends State<MyHomePage> {
     const TestScaleDrag(),
     const CascadePage(),
     const PomodoroPage(),
-    LocalAuthPage(),
+    const LocalAuthPage(),
     const ScreenSaverPage(),
     const SocketPage(),
     const DialPage(),
     const SharePage(),
     const AudioPage(),
     const IsolatePage(),
+    const ConstrainedPage(),
   ];
 
   @override
@@ -80,8 +83,8 @@ class _MyHomePageState extends State<MyHomePage> {
     return Scaffold(
         appBar: AppBar(
           title: Text(
-            widget.title+'設定',
-            style: TextStyle(
+            widget.title,
+            style: const TextStyle(
               fontFamily: 'SFPro1'
             ),
           ),

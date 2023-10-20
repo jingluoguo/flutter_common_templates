@@ -56,7 +56,7 @@ EXTERNAL SOURCES:
 SPEC CHECKSUMS:
   audio_session: 4f3e461722055d21515cf3261b64c973c062f345
   emoji_picker_flutter: df19dac03a2b39ac667dc8d1da939ef3a9e21347
-  Flutter: 50d75fe2f02b26cc09d224853bb45737f8b3214a
+  Flutter: f04841e97a9d0b0a8025694d0796dd46242b2854
   flutter_keyboard_visibility: 0339d06371254c3eb25eeb90ba8d17dca8f9c069
   just_audio: baa7252489dbcf47a4c7cc9ca663e9661c99aafa
   local_auth_ios: 0d333dde7780f669e66f19d2ff6005f3ea84008d
@@ -65,6 +65,6 @@ SPEC CHECKSUMS:
   shared_preferences_ios: 548a61f8053b9b8a49ac19c1ffbc8b92c50d68ad
   video_player_avfoundation: 6d971a232d72e6ee25368378d48a079dea01f1cf
 
-PODFILE CHECKSUM: aafe91acc616949ddb318b77800a7f51bffa2a4c
+PODFILE CHECKSUM: ef19549a9bc3046e7bb7d2fab4d021637c0c58a3
 
-COCOAPODS: 1.11.3
+COCOAPODS: 1.12.1

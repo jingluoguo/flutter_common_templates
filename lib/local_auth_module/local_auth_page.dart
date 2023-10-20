@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:local_auth/local_auth.dart';
 
 class LocalAuthPage extends StatefulWidget {
-  LocalAuthPage({Key? key}) : super(key: key);
+  const LocalAuthPage({Key? key}) : super(key: key);
 
   @override
   _LocalAuthPageState createState() => _LocalAuthPageState();
@@ -19,12 +19,13 @@ class _LocalAuthPageState extends State<LocalAuthPage> {
         ),
         body: Column(
           children: [
-            RaisedButton(
+            ElevatedButton(
               onPressed: () async {
                 try {
                   bool canCheckBiometrics =
                   await localAuth.canCheckBiometrics;
-                  ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('支持')));
+                  ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(canCheckBiometrics
+                      ? '支持' : '不支持')));
                 } catch (e) {
                   ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('不支持：$e')));
                 }
@@ -32,12 +33,11 @@ class _LocalAuthPageState extends State<LocalAuthPage> {
               child: const Text('检测是否支持生物识别'),
             ),
             const Divider(),
-            RaisedButton(
+            ElevatedButton(
               onPressed: () async {
                 try {
                   List<BiometricType> availableBiometrics =
                   await localAuth.getAvailableBiometrics();
-                  print(availableBiometrics);
                   ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('availableBiometrics:$availableBiometrics,为空可以查看是否未开启')));
                 } catch (e) {
                   ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('不支持：$e')));
@@ -46,14 +46,13 @@ class _LocalAuthPageState extends State<LocalAuthPage> {
               child: const Text('获取支持的生物识别列表'),
             ),
             const Divider(),
-            RaisedButton(
+            ElevatedButton(
               onPressed: () async {
                 try {
                   bool didAuthenticate =
                   await localAuth.authenticate(
                       localizedReason: '扫描指纹进行身份识别',
                       options: const AuthenticationOptions(useErrorDialogs: true));
-                  print('didAuthenticate: $didAuthenticate');
                   ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('didAuthenticate: $didAuthenticate')));
                 } catch (e) {
                   ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('不支持：$e')));

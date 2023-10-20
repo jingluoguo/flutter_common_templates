@@ -5,8 +5,8 @@
 > 版本如下
 
 ```yaml
-flutter: 3.0.2
-dart: 2.16.2
+flutter: 3.10.2
+dart: 3.0.2
 ```
 
 # 列表
@@ -66,7 +66,7 @@ emoji_picker_flutter: ^1.0.5
 ```yaml
 ```
 
-## 四、[cascade_module](https://github.com/jingluoguo/flutter_common_templates/tree/main/lib/cascade_module)
+## 五、[cascade_module](https://github.com/jingluoguo/flutter_common_templates/tree/main/lib/cascade_module)
 > 级联
 
 ### 1 预览图
@@ -78,7 +78,7 @@ emoji_picker_flutter: ^1.0.5
 ```yaml
 ```
 
-## 五、[pomodoro](https://github.com/jingluoguo/flutter_common_templates/tree/main/lib/pomodoro_module)
+## 六、[pomodoro](https://github.com/jingluoguo/flutter_common_templates/tree/main/lib/pomodoro_module)
 > 番茄钟
 
 ### 1 预览图
@@ -91,3 +91,18 @@ emoji_picker_flutter: ^1.0.5
 # 状态管理
 get: ^5.0.0-beta.52
 ```
+
+## 七、[local_auth_module](https://github.com/jingluoguo/flutter_common_templates/tree/main/lib/local_auth_module)
+> 本地验证
+
+### 1 版本
+
+```yaml
+local_auth: 2.1.2
+```
+
+## 八、[screen_saver_module](https://github.com/jingluoguo/flutter_common_templates/tree/main/lib/screen_saver_module)
+> 屏保样式
+
+## 九、[socket_module](https://github.com/jingluoguo/flutter_common_templates/tree/main/lib/socket_module)
+> websocket 使用

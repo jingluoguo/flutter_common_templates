@@ -93,7 +93,7 @@ class _SocketPageState extends State<SocketPage> {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             GestureDetector(
-              onTap: ()=>serviceBinding('192.168.4.72', 8090),
+              onTap: ()=>serviceBinding('124.70.211.39', 8002),
               child: Container(
                 height: 48.0,
                 width: 100.0,
@@ -105,7 +105,7 @@ class _SocketPageState extends State<SocketPage> {
             ),
             const SizedBox(height: 10.0),
             GestureDetector(
-              onTap: ()=>clientConnect('ws://192.168.4.72:8090/ws'),
+              onTap: ()=>clientConnect('ws://124.70.211.39:8002/ws/11111'),
               child: Container(
                 height: 48.0,
                 width: 100.0,
